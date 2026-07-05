@@ -21,7 +21,7 @@ const csp = [
   isProd ? "frame-ancestors 'self'" : "frame-ancestors *",
   "form-action 'self'",
   // toolchain needs eval/wasm-eval + blob workers; allow the CDNs the app and canvas load from
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: https://cdn.jsdelivr.net https://cdn.tailwindcss.com https://unpkg.com https://esm.sh",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: https://cdn.jsdelivr.net https://cdn.tailwindcss.com https://unpkg.com https://esm.sh https://plausible.io",
   "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net",
