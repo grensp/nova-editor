@@ -17,8 +17,8 @@ const csp = [
   "default-src 'self'",
   "base-uri 'self'",
   "object-src 'none'",
-  // lock framing in prod; allow it in dev so a dev server is previewable in Run
-  isProd ? "frame-ancestors 'self'" : "frame-ancestors *",
+  // Allow framing for AI Studio preview environment and dev preview
+  "frame-ancestors *",
   "form-action 'self'",
   // toolchain needs eval/wasm-eval + blob workers; allow the CDNs the app and canvas load from
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: https://cdn.jsdelivr.net https://cdn.tailwindcss.com https://unpkg.com https://esm.sh https://plausible.io",
@@ -40,15 +40,17 @@ const csp = [
 const securityHeaders = [
   { key: "Content-Security-Policy", value: csp },
   { key: "X-Content-Type-Options", value: "nosniff" },
-  // X-Frame-Options only in prod (see note above) — omitting it in dev lets the
-  // Run tab embed a dev server of this app.
-  ...(isProd ? [{ key: "X-Frame-Options", value: "SAMEORIGIN" }] : []),
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "X-DNS-Prefetch-Control", value: "off" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
 ];
 
 const nextConfig = {
+  output: "export",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
   reactStrictMode: true,
   async headers() {
     // WebContainers need cross-origin isolation (SharedArrayBuffer). Scope the
@@ -78,7 +80,7 @@ const nextConfig = {
     // paths instead of any app route.
     return {
       beforeFiles: [
-        { source: "/", destination: "/landing.html" },
+        { source: "/landing", destination: "/landing.html" },
         { source: "/docs", destination: "/docs.html" },
       ],
     };

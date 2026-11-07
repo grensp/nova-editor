@@ -22,10 +22,10 @@ function buildJsxDoc(source: string, tree: any, isolate: boolean): string {
   return `<!doctype html><html><head>
     <meta charset="utf-8"/>
     <script>${STORAGE_SHIM}</script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="/vendor/tailwindcss.js"></script>
+    <script crossorigin src="/vendor/react.development.js"></script>
+    <script crossorigin src="/vendor/react-dom.development.js"></script>
+    <script src="/vendor/babel.min.js"></script>
     <style>${body}
       [data-wfc-hover]{outline:1.5px solid rgba(204,255,2,.55)!important;outline-offset:-1px}
       [data-wfc-peek]{outline:1.5px dashed rgba(204,255,2,.7)!important;outline-offset:-1px}
@@ -52,7 +52,7 @@ function buildBundledDoc(bundleJs: string, isolate: boolean): string {
   return `<!doctype html><html><head>
     <meta charset="utf-8"/>
     <script>${STORAGE_SHIM}</script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/vendor/tailwindcss.js"></script>
     <style>${body}
       [data-wfc-hover]{outline:1.5px solid rgba(204,255,2,.55)!important;outline-offset:-1px}
       [data-wfc-peek]{outline:1.5px dashed rgba(204,255,2,.7)!important;outline-offset:-1px}

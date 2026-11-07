@@ -7,10 +7,17 @@ const CDN = "https://esm.sh";
 let initPromise: Promise<void> | null = null;
 function ensureInit(): Promise<void> {
   if (!initPromise) {
-    initPromise = esbuild.initialize({
-      wasmURL: `https://unpkg.com/esbuild-wasm@${ESBUILD_VERSION}/esbuild.wasm`,
-      worker: true,
-    });
+    initPromise = esbuild
+      .initialize({
+        wasmURL: "/esbuild.wasm",
+        worker: true,
+      })
+      .catch(() => {
+        return esbuild.initialize({
+          wasmURL: `https://unpkg.com/esbuild-wasm@${ESBUILD_VERSION}/esbuild.wasm`,
+          worker: true,
+        });
+      });
   }
   return initPromise;
 }

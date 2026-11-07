@@ -67,8 +67,8 @@ export default function Welcome({ mode }: { mode: "signin" | "redeem" | "login" 
       <div className="grain" />
       <div className="relative w-full max-w-sm">
         <button
-          onClick={() => navigate("/")}
-          title="Back to home"
+          onClick={() => navigate("/dashboard")}
+          title="Go to dashboard"
           className="mb-7 flex w-full items-center justify-center gap-2 font-display text-[18px] font-semibold tracking-tight transition-opacity hover:opacity-80"
         >
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-accent text-accent-ink">✦</span>

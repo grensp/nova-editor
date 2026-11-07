@@ -72,7 +72,7 @@ export default function ProjectCard({
     const isFull = /<html[\s>]/i.test(htmlFile.content);
     if (isFull) return htmlFile.content; // complete document, render as-is
     const base = project.baseHref ? `<base href="${project.baseHref}">` : "";
-    return `<!doctype html><html><head><meta charset="utf-8">${base}<script src="https://cdn.tailwindcss.com"></script><style>body{margin:0}</style></head><body>${htmlFile.content}</body></html>`;
+    return `<!doctype html><html><head><meta charset="utf-8">${base}<script src="/vendor/tailwindcss.js"></script><style>body{margin:0}</style></head><body>${htmlFile.content}</body></html>`;
   }, [htmlFile, project.baseHref]);
 
   const initial = project.name.charAt(0).toUpperCase();

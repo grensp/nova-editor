@@ -23,6 +23,9 @@ const ORIGINS = new Set([
   "https://nova-editor-six.vercel.app", // the Vercel deployment still resolves
   "http://localhost:3000",
   "http://localhost:3011",
+  "http://tauri.localhost",
+  "https://tauri.localhost",
+  "tauri://localhost",
   ...(process.env.NOVA_ORIGIN ? process.env.NOVA_ORIGIN.split(",").map((s) => s.trim()) : []),
 ]);
 

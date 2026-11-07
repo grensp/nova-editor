@@ -1,0 +1,7 @@
+{
+  "name": "Nova",
+  "description": "Nova — The visual editor for real code. Browser-based, Git-native visual editor for real codebases.",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
