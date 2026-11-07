@@ -3,6 +3,32 @@
 **The last-mile visual editor for AI-generated web apps.** Browser-based,
 Git-native, no lock-in.
 
+---
+
+## ⚡ Recent Updates: Windows Desktop & 100% Offline Mode (Tauri v2)
+
+Nova is now configured with standalone desktop distribution for Windows and complete offline-first execution:
+
+- **Tauri v2 Windows Desktop**:
+  - Configured native desktop application core in `src-tauri/`.
+  - Added standalone NSIS installer bundle target (`.exe`) via `npm run tauri:build:windows`.
+  - Automated cloud build pipeline included via GitHub Actions (`.github/workflows/tauri-build-windows.yml`) to compile and release Windows `.exe` installers on `windows-latest` runners.
+- **Dashboard as Default Main Window**:
+  - The initial marketing landing page is excluded from the root route.
+  - Both the web root (`/`) and Tauri's main window now boot directly into the **Dashboard (`/dashboard`)**.
+- **100% Offline Workflow**:
+  - **Static Export**: Compiles standalone static assets via Next.js `output: "export"` with `trailingSlash: true` into `out/`.
+  - **Local Vendor Assets**: Pre-bundled local dependencies (`public/vendor/`) for Babel Standalone, React, React DOM, and Tailwind CSS.
+  - **Local WebAssembly**: Pre-bundled local `esbuild.wasm` (`public/esbuild.wasm`) so live component compiling and bundling run without an internet connection.
+  - **Encrypted Local Storage**: Projects, components, assets, and undo/redo history persist locally using IndexedDB.
+  - **Companion Runner Integration**: Added Tauri webview origins (`http://tauri.localhost`, `https://tauri.localhost`, `tauri://localhost`) to the local runner agent's CORS whitelist (`runner/index.mjs`).
+- **New Desktop Scripts**:
+  - `npm run tauri:dev` — Starts Next.js and launches the live desktop window on `/dashboard`.
+  - `npm run tauri:build:windows` — Compiles the offline static bundle and produces the Windows installer.
+  - Complete instructions documented in [`docs/tauri-windows.md`](./docs/tauri-windows.md).
+
+---
+
 AI tools (Bolt, Lovable, v0, Cursor…) generate ~90% of an app from a prompt. Nova
 is where you do the final 10% by hand — click an element, tweak its layout, color,
 and copy on a live canvas, and push clean code back to your repo. No tokens spent
